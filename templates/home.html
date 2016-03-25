@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %}Welcome | {% endblock %}
+
+<style>
+{% block style %}
+
+.navbar-static-top {
+	margin-bottom: 0px !important;
+}
+.jumbotron {
+	background-color: #0E3D14;
+	color : #FFF; 
+}
+
+}
+{% endblock %}
+</style>
+ {% block jumbotron %}
+ {% if request.user.is_authenticated %}
+ <div class = "jumbotron">
+      <h1 align = "center">Logged in!!!</h1>
+      <p class = "lead" align = "center">
+      Want to see your history as how you have managed till last time.<br>
+                    Click the button below.
+      </p>
+      <p align = "center">
+      <a class = "btn btn-lg btn-success" href = "" role="button">View History</a>
+      </p>
+      </div>
+
+ {% else %}
+ <div class = "jumbotron">
+      <h1 align = "center">First you need to log in!!!</h1>
+      <div style="text-align: center">
+      <a class = "btn btn-lg btn-success" align="center" href = "http://127.0.0.1:8000/accounts/login/" role="button">Login</a>
+      </div>
+      </p>
+      </div>
+  {% endif %}
+ {% endblock %}	
+
+ {% block mycontent %}
+ <h2 align="center">Want to check more urls</h2>
+ <p align="center">No problem. Just enter the URL that you want to get information about and we will bring you with result</p>
+  <div class='col-md-6 col-md-offset-3 column' align="center" >
+ <form method='POST' action=''>{% csrf_token %}
+ 
+ {{ form }}
+ <input type='submit' value = 'SUBMIT' align = "center" class = 'btn btn-default' action=''>
+            
+            <!--  <input type ='text' align = "center" class='form-control' name='url' placeholder='Your URL' required pattern="https?://.+" /> --> 
+       
+            	<!-- <button type='submit' align = "center"  class='btn btn-default'>SUBMIT</button> -->
+ </form>          
+ </div> 
+ <div class='col-md-3 col-md-offset-2 column' align = 'center'>
+ <input type='text' align="center" class='btn btn-default' placeholder = 'Monthly Revenue'>
+ </div>
+<div class='col-md-3 col-md-offset-2 column' align = 'center'>
+ <input type='text' align="center" class='btn btn-default' placeholder = 'Price'>
+ </div>
+ {% endblock %}
+<!-- {% block content %}
+{% if request.user.is_authenticated %}
+
+   {% if queryset %}
+   <h2>Welcome Staff</h2>
+   <table class ='table'>
+   {% for instance in queryset %}
+   	<tr><td>{{ forloop.counter }}<td>{{ instance }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp }}</td></tr>
+   {% endfor %}
+</table>
+
+
+    {% endif %}
+{% else %}
+<div class="row">
+  <div class="col-sm-3 pull-right">
+  <p class='lead text-align-center'>{{ title }}</p>
+	<form method='POST' action=''>{% csrf_token %}
+ <!--  {{ form|crispy }}
+
+ -->   <!--  <input class ='btn btn-primary' type='submit' value ='Sign Up' />
+	</form>
+  </div>
+
+  <div class='col-sm-3'>
+	<p class ='lead text-align-center'>Built with django and bootstrap</p>
+  </div>
+  <div class='col-sm-3'>
+	<p class ='lead text-align-center'>Created for the first time</p>
+  </div>
+  <div class='col-sm-3'>
+	<p class ='lead text-align-center'>An open source platform</p>
+  </div>
+
+</div>
+{% endif %}
+{% endblock %} --> 
